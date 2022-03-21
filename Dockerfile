@@ -7,6 +7,7 @@ apt -y install dnsutils \
 vim \
 whois \
 net-tools \
+iputils \
 socat
 
 USER $NB_UID
