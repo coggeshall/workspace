@@ -23,7 +23,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 apt update && \
 apt -y install google-chrome-stable
 
-# install chromedriver
 RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip && \
 unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
@@ -37,7 +36,8 @@ RUN mamba install --quiet --yes -c conda-forge 'voila' \
 'requests' \
 'selenium' \
 'schedule' \
-'jupyterlab-git' && \
+'jupyterlab-git' \
+'jupytext' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
