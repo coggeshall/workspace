@@ -54,11 +54,13 @@ websockets \
 tldextract \
 pytz \
 jupyter-server-proxy \
-jupyterlab_latex
+jupyterlab_latex \
+jupyter-tensorboard
 
 RUN jupyter serverextension enable voila && \
 jupyter server extension enable voila && \
 jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
+jupyter labextension install jupyterlab_tensorboard && \
 jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
