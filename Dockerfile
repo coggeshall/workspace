@@ -36,7 +36,8 @@ RUN mamba install --quiet --yes -c conda-forge 'voila' \
 'beautifulsoup4' \
 'requests' \
 'selenium' \
-'schedule' && \
+'schedule' \
+'jupyterlab-git' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
