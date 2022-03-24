@@ -13,7 +13,8 @@ gcc \
 make \
 gnupg2 \
 curl \
-unzip && \
+unzip \
+rclone && \
 rm -rf /var/lib/apt/lists/*s
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
