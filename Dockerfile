@@ -53,7 +53,8 @@ py-radix \
 websockets \
 tldextract \
 pytz \
-jupyter-server-proxy
+jupyter-server-proxy \
+jupyterlab_latex
 
 RUN jupyter serverextension enable voila && \
 jupyter server extension enable voila && \
