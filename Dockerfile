@@ -14,7 +14,11 @@ USER $NB_UID
 RUN npm install -g tslab && \
 tslab install
 
-RUN conda clean --all -f -y && \
+RUN mamba install --quiet --yes -c conda-forge voila && \
+fix-permissions "${CONDA_DIR}" && \
+fix-permissions "/home/${NB_USER}"
+
+RUN mamba clean --all -f -y && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
@@ -26,3 +30,9 @@ py-radix \
 websockets \
 tldextract \
 pytz
+
+RUN jupyter serverextension enable voila && \
+jupyter server extension enable voila && \
+rm -rf "/home/${NB_USER}/.local" && \
+fix-permissions "${CONDA_DIR}" && \
+fix-permissions "/home/${NB_USER}"
