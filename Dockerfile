@@ -51,10 +51,13 @@ ipwhois \
 py-radix \
 websockets \
 tldextract \
-pytz
+pytz \
+jupyter-server-proxy
 
 RUN jupyter serverextension enable voila && \
 jupyter server extension enable voila && \
+jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
+jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
