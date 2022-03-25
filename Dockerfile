@@ -30,8 +30,6 @@ USER $NB_UID
 RUN npm install -g tslab && \
 tslab install
 
-RUN jupyter labextension install jupyterlab_voyager
-
 RUN mamba install --quiet --yes -c conda-forge 'voila' \
 'tensorflow' \
 'beautifulsoup4' \
@@ -39,7 +37,8 @@ RUN mamba install --quiet --yes -c conda-forge 'voila' \
 'selenium' \
 'schedule' \
 'jupyterlab-git' \
-'jupytext' && \
+'jupytext' \
+'ipyparallel' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
