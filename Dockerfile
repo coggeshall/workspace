@@ -3,18 +3,10 @@ FROM jupyter/pyspark-notebook:latest
 USER root
 RUN export DEBIAN_FRONTEND=noninteractive && \
 apt update && \
-apt -y install dnsutils \
-vim \
-whois \
-net-tools \
-iputils-ping \
-socat \
-gcc \
-make \
-gnupg2 \
-curl \
-unzip \
-rclone && \
+apt -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnupg2 curl unzip rclone \
+xvfb dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
+xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
+jq tshark && \
 rm -rf /var/lib/apt/lists/*s
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -53,6 +45,7 @@ ipwhois \
 py-radix \
 websockets \
 tldextract \
+urlextract \
 pytz \
 jupyter-server-proxy \
 jupyterlab_latex \
