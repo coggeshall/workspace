@@ -20,8 +20,7 @@ http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.google
 unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
 USER $NB_UID
-RUN npm install -g tslab && \
-tslab install
+RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
 'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' && \
