@@ -6,7 +6,7 @@ apt-get update && \
 apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnupg2 curl unzip rclone \
 xvfb dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
-jq tshark && \
+jq tshark ttyplot && \
 rm -rf /var/lib/apt/lists/*s
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -34,7 +34,7 @@ fix-permissions "/home/${NB_USER}"
 RUN jupyter lab build
 
 RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
-jupyter-server-proxy jupyterlab_latex jupyter-tensorboard
+jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl
 
 RUN jupyter serverextension enable voila && \
 jupyter server extension enable voila && \
