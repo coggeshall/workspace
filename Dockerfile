@@ -33,7 +33,7 @@ fix-permissions "/home/${NB_USER}"
 
 RUN jupyter lab build
 
-RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz \
+RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard
 
 RUN jupyter serverextension enable voila && \
