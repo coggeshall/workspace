@@ -23,7 +23,7 @@ USER $NB_UID
 RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
-'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' && \
+'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' 'xeus' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
