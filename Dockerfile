@@ -33,7 +33,7 @@ fix-permissions "/home/${NB_USER}"
 
 RUN curl -Lo coursier https://git.io/coursier-cli && \
 chmod +x coursier && \
-./coursier launch --fork almond -- --install && \
+./coursier launch --fork almond -M almond.ScalaKernel -- --install && \
 rm -f coursier
 
 RUN jupyter lab build
@@ -43,8 +43,8 @@ jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl
 
 RUN env GO111MODULE=on && \
 go get github.com/gopherdata/gophernotes && \
-mkdir -p ~/.local/share/jupyter/kernels/gophernotes && \
-cd ~/.local/share/jupyter/kernels/gophernotes && \
+mkdir -p "${HOME}/.local/share/jupyter/kernels/gophernotes" && \
+cd "${HOME}/.local/share/jupyter/kernels/gophernotes" && \
 cp "$(go env GOPATH)"/pkg/mod/github.com/gopherdata/gophernotes@*/kernel/*  "." && \
 chmod +w ./kernel.json && \
 sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < kernel.json.in > kernel.json
