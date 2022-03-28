@@ -36,10 +36,10 @@ RUN jupyter lab build
 RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl
 
-RUN jupyter serverextension enable voila && \
-jupyter server extension enable voila && \
-jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
-jupyter lab build && \
+#RUN jupyter serverextension enable voila && \
+#jupyter server extension enable voila && \
+#jupyter serverextension enable --sys-prefix jupyter_server_proxy && \
+RUN jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
