@@ -31,15 +31,15 @@ RUN mamba clean --all -f -y && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
-RUN curl -Lo coursier https://git.io/coursier-cli && \
-chmod +x coursier && \
-./coursier launch --fork almond -M almond.ScalaKernel -- --install && \
-rm -f coursier
-
 RUN jupyter lab build
 
 RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl
+
+RUN jupyter lab build && \
+rm -rf "/home/${NB_USER}/.local" && \
+fix-permissions "${CONDA_DIR}" && \
+fix-permissions "/home/${NB_USER}"
 
 RUN env GO111MODULE=on go get github.com/gopherdata/gophernotes && \
 mkdir -p "${HOME}/.local/share/jupyter/kernels/gophernotes" && \
@@ -49,7 +49,11 @@ cp "$(go env GOPATH)"/pkg/mod/github.com/gopherdata/gophernotes@*/kernel/*  "." 
 chmod +w ./kernel.json && \
 sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < kernel.json.in > kernel.json
 
+RUN curl -Lo coursier https://git.io/coursier-cli && \
+chmod +x coursier && \
+./coursier launch --fork almond -M almond.ScalaKernel -- --install && \
+rm -f coursier
+
 RUN jupyter lab build && \
-rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
