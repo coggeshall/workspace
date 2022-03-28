@@ -41,10 +41,10 @@ RUN jupyter lab build
 RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl
 
-RUN env GO111MODULE=on && \
-go get github.com/gopherdata/gophernotes && \
+RUN env GO111MODULE=on go get github.com/gopherdata/gophernotes && \
 mkdir -p "${HOME}/.local/share/jupyter/kernels/gophernotes" && \
 cd "${HOME}/.local/share/jupyter/kernels/gophernotes" && \
+go env GOPATH && \
 cp "$(go env GOPATH)"/pkg/mod/github.com/gopherdata/gophernotes@*/kernel/*  "." && \
 chmod +w ./kernel.json && \
 sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < kernel.json.in > kernel.json
