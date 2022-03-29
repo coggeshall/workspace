@@ -1,4 +1,4 @@
-FROM jupyter/pyspark-notebook:latest
+FROM jupyter/all-spark-notebook:latest
 
 USER root
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -23,7 +23,12 @@ USER $NB_UID
 RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
-'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' 'bqplot' && \
+'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' 'bqplot' 'tensorflow' 'keras' \
+'ipywidgets' && \
+fix-permissions "${CONDA_DIR}" && \
+fix-permissions "/home/${NB_USER}"
+
+RUN mamba install --quiet --yes -c plotly 'plotly' 'jupyter-dash' 'kaleido' 'plotly-geo' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
@@ -38,14 +43,5 @@ jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl
 
 RUN jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
-fix-permissions "${CONDA_DIR}" && \
-fix-permissions "/home/${NB_USER}"
-
-RUN curl -Lo coursier https://git.io/coursier-cli && \
-chmod +x coursier && \
-./coursier launch --fork almond:0.10.9 --scala 2.12.9 -- --install --id scala212 --display-name "Scala" && \
-rm -f coursier
-
-RUN jupyter lab build && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
