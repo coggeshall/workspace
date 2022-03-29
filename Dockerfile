@@ -43,7 +43,7 @@ fix-permissions "/home/${NB_USER}"
 
 RUN curl -Lo coursier https://git.io/coursier-cli && \
 chmod +x coursier && \
-./coursier launch --fork almond --scala 2.12.11 -M almond.ScalaKernel -- --install && \
+./coursier launch --fork almond:0.10.9 --scala 2.12.9 -- --install --id scala212 --display-name "Scala" && \
 rm -f coursier
 
 RUN jupyter lab build && \
