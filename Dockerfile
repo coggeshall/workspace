@@ -32,7 +32,7 @@ RUN mamba install --quiet --yes -c conda-forge -c plotly 'plotly' 'jupyter-dash'
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
-RUN jupyter labextension install 'jupyterlab_voyager' '@jupyterlab/google-drive'
+RUN jupyter labextension install '@jupyterlab/google-drive'
 
 RUN mamba clean --all -f -y && \
 fix-permissions "${CONDA_DIR}" && \
