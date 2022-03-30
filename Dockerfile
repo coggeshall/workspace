@@ -24,13 +24,15 @@ RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
 'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' 'bqplot' 'tensorflow' 'keras' \
-'ipywidgets' && \
+'ipywidgets' 'jupyter_bokeh' 'jupyterlab-lsp' 'python-lsp-server' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
 RUN mamba install --quiet --yes -c plotly 'plotly' 'jupyter-dash' 'kaleido' 'plotly-geo' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
+
+RUN jupyter labextension install 'jupyterlab_voyager' '@jupyterlab/google-drive'
 
 RUN mamba clean --all -f -y && \
 fix-permissions "${CONDA_DIR}" && \
