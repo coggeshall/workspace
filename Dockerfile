@@ -1,4 +1,4 @@
-FROM jupyter/datascience-notebook:latest
+FROM jupyter/all-spark-notebook:latest
 
 USER root
 RUN export DEBIAN_FRONTEND=noninteractive && \
