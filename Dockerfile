@@ -28,10 +28,6 @@ RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulso
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
-RUN mamba install --quiet --yes -c conda-forge -c plotly 'plotly' 'jupyter-dash' 'plotly-geo' && \
-fix-permissions "${CONDA_DIR}" && \
-fix-permissions "/home/${NB_USER}"
-
 RUN mamba clean --all -f -y && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
