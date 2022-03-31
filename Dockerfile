@@ -24,7 +24,7 @@ RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
 'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' 'bqplot' 'tensorflow' 'keras' \
-'ipywidgets' 'jupyter_bokeh' 'jupyterlab-lsp' 'python-lsp-server' 'lux-api' && \
+'ipywidgets' 'jupyter_bokeh' 'jupyterlab-lsp' 'python-lsp-server' 'lux-api' 'ipyleaflet' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
@@ -38,7 +38,6 @@ RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract p
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl perspective-python
 
 RUN jupyter labextension install luxwidget && \
-jupyter labextension install @finos/perspective-jupyterlab && \
 jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
