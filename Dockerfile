@@ -35,9 +35,10 @@ fix-permissions "/home/${NB_USER}"
 RUN jupyter lab build
 
 RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
-jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl
+jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl perspective-python
 
-RUN jupyter lab build && \
+RUN jupyter labextension install @finos/perspective-jupyterlab && \
+jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
