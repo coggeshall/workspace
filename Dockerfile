@@ -36,7 +36,7 @@ RUN jupyter lab build
 
 RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl perspective-python jupyterlab-github \
-jlab-enhanced-cell-toolbar jupyterlab_autoscrollcelloutput
+jlab-enhanced-cell-toolbar jupyterlab_autoscrollcelloutput pyviz_comms
 
 RUN jupyter labextension install luxwidget && \
 jupyter lab build && \
