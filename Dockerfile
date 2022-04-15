@@ -24,7 +24,7 @@ RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
 'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' 'bqplot' 'tensorflow' 'keras' \
-'ipywidgets' 'jupyter_bokeh' 'jupyterlab-lsp' 'python-lsp-server' 'lux-api' && \
+'ipywidgets' 'jupyter_bokeh' 'jupyterlab-lsp' 'python-lsp-server' 'lux-api' 'basemap' && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
