@@ -6,7 +6,8 @@ apt-get update && \
 apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnupg2 curl unzip rclone \
 xvfb x11vnc novnc websockify dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
-jq tshark netbase bc espeak libespeak1 telnet && \
+jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
+xorg xubuntu-icon-theme && \
 rm -rf /var/lib/apt/lists/*s
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
