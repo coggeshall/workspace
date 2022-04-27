@@ -7,7 +7,18 @@ apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnup
 xvfb x11vnc novnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
-xorg xubuntu-icon-theme tightvncserver && \
+xorg xubuntu-icon-theme && \
+apt-get clean
+
+RUN export DEBIAN_FRONTEND=noninteractive && \
+wget https://s3.amazonaws.com/turbovnc-pr/main/linux/`curl -q https://s3.amazonaws.com/turbovnc-pr/main/linux/index.html | awk -F'"' '/_amd64\.deb/ {print $2}'` -O turbovnc_latest_amd64.deb && \
+apt-get update && \
+apt-get install -y -q ./turbovnc_latest_amd64.deb && \
+apt-get remove -y -q light-locker && \
+rm ./turbovnc_latest_amd64.deb && \
+apt-get update && \
+apt-get autoclean && \
+ln -s /opt/TurboVNC/bin/* /usr/local/bin/ && \
 rm -rf /var/lib/apt/lists/*s
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
