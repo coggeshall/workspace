@@ -55,18 +55,13 @@ jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl perspective-pytho
 jlab-enhanced-cell-toolbar jupyterlab_autoscrollcelloutput pyviz_comms panel datashader hvplot \
 holoviews bokeh geoviews param colorcet pyttsx3
 
-
-RUN tslab install && \
-cd /opt/install && \
-conda env update -n base --file environment.yml
-
-USER root
-RUN rm -rf /opt/install
-
-USER $NB_USER
+RUN tslab install
 
 RUN jupyter labextension install luxwidget && \
 jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
+
+RUN cd /opt/install && \
+conda env update -n base --file environment.yml
