@@ -1,13 +1,7 @@
 #!/bin/bash
 
 
-#export $(/usr/bin/dbus-launch)
-#export DISPLAY=:89
-
-#/usr/bin/xvfb-run -n 89 --server-args="-screen 0 2304x1440x24 -ac -nolisten tcp -dpi 96 +extension RANDR" xfce4-session&
-#vncserver -SecurityTypes none&
-#/usr/share/novnc/utils/launch.sh --listen 5901&
-
-xinit /etc/X11/Xsession startxfce4 -- /usr/local/bin/Xvnc :1 -depth 24 -desktop Desktop-GUI -geometry 1600x900 -pn -SecurityTypes None -rfbport 5901 -rfbwait 30000&
+pass=$(pwgen -s 8 1)
+echo $pass | tee /tmp/vncpw | vncpasswd -f > /home/jovyan/.vnc/passwd
+xinit /etc/X11/Xsession startxfce4 -- /usr/local/bin/Xvnc :1 -depth 24 -desktop Desktop-GUI -geometry 1600x900 -pn -SecurityTypes VNC -rfbport 5901 -rfbauth /home/jovyan/.vnc/passwd -rfbwait 30000&
 python -m websockify --web /usr/share/novnc/ 6901 localhost:5901
-

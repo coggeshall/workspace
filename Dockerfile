@@ -7,7 +7,7 @@ apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnup
 xvfb x11vnc novnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
-xorg manpages && \
+xorg manpages man-db pwgen && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -31,6 +31,9 @@ RUN wget -O /tmp/chromedriver.zip \
 http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip && \
 unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
+ADD . /opt/install
+RUN fix-permissions /opt/install
+
 USER $NB_UID
 RUN npm install -g tslab puppeteer-core axios && tslab install
 
@@ -52,31 +55,18 @@ jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl perspective-pytho
 jlab-enhanced-cell-toolbar jupyterlab_autoscrollcelloutput pyviz_comms panel datashader hvplot \
 holoviews bokeh geoviews param colorcet pyttsx3
 
+
+RUN tslab install && \
+cd /opt/install && \
+conda env update -n base --file environment.yml
+
+USER root
+RUN rm -rf /opt/install
+
+USER $NB_USER
+
 RUN jupyter labextension install luxwidget && \
 jupyter lab build && \
 rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
-
-RUN tslab install
-
-USER root
-ADD . /opt/install
-RUN fix-permissions /opt/install
-
-USER $NB_USER
-RUN cd /opt/install && \
-conda env update -n base --file environment.yml
-
-
-
-#export DISPLAY=:1
-#Xvfb "$DISPLAY" -screen 0 1024x768x24&
-#dbus-launch xfce4-session
-#x11vnc -display "$DISPLAY" -bg -nopw -listen localhost -xkb
-
-#/usr/bin/xvfb-run -n 89 --server-args="-screen 0 2304x1440x24 -ac -nolisten tcp -dpi 96 +extension RANDR" xfce4-session&
-#x11vnc -display :89 -bg -nopw -listen localhost -xkb
-#/usr/share/novnc/utils/launch.sh --listen 8888
-
-#vncserver -SecurityTypes none -novnc /usr/share/novnc -xstartup
