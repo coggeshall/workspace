@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mkdir -p /home/jovyan/.vnc/
+pass=$(pwgen -s 8 1)
+echo $pass | tee /tmp/vncpw | vncpasswd -f > /home/jovyan/.vnc/passwd

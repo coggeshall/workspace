@@ -1,1 +1,2 @@
 graft jupyter_desktop/bin
+graft jupyter_desktop/share
