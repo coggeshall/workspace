@@ -1,5 +1,3 @@
 #!/bin/bash
 
-
-xinit /etc/X11/Xsession startxfce4 -- /usr/local/bin/Xvnc :1 -depth 24 -desktop Desktop-GUI -geometry 1600x900 -pn -SecurityTypes VNC -rfbport 5901 -rfbauth /home/jovyan/.vnc/passwd -rfbwait 30000&
 python -m websockify --web /usr/share/novnc/ 6901 localhost:5901
