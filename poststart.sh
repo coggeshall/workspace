@@ -4,7 +4,9 @@ mkdir -p /home/jovyan/.vnc
 pwgen -s 8 1 | tee /tmp/vncpw | vncpasswd -f > /home/jovyan/.vnc/passwd
 PASSWORD=$(cat /tmp/vncpw)
 
-cat << EOF > /usr/share/novnc/index.html
+cp -r /usr/share/novnc /tmp
+
+cat << EOF > /tmp/novnc/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +92,7 @@ cat << EOF > /usr/share/novnc/index.html
         // credentials to authenticate
         function credentialsAreRequired(e) {
             const password = prompt("Password Required:");
-            rfb.sendCredentials({ password: $PASSWORD });
+            rfb.sendCredentials({ password: '$PASSWORD' });
         }
 
         // When this function is called we have received
@@ -146,7 +148,7 @@ cat << EOF > /usr/share/novnc/index.html
         // By default, use the host and port of server that served this file
         const host = readQueryVariable('host', window.location.hostname);
         let port = readQueryVariable('port', window.location.port);
-        const password = "$PASSWORD";
+        const password = '$PASSWORD';
         const path = readQueryVariable('path', 'websockify');
 
         // | | |         | | |
@@ -170,7 +172,7 @@ cat << EOF > /usr/share/novnc/index.html
 
         // Creating a new RFB object will start a new connection
         rfb = new RFB(document.getElementById('screen'), url,
-                      { credentials: { password: $PASSWORD } });
+                      { credentials: { password: '$PASSWORD' } });
 
         // Add listeners to important events from the RFB module
         rfb.addEventListener("connect",  connectedToServer);
