@@ -34,7 +34,7 @@ unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 ADD . /opt/install
 RUN fix-permissions /opt/install
 
-RUN yes | unminimize
+RUN (yes | unminimize) || :
 
 USER $NB_UID
 RUN npm install -g tslab puppeteer-core axios && tslab install
