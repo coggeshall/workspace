@@ -149,7 +149,7 @@ cat << EOF > /tmp/novnc/index.html
         const host = readQueryVariable('host', window.location.hostname);
         let port = readQueryVariable('port', window.location.port);
         const password = '$PASSWORD';
-        const path = readQueryVariable('path', 'websockify');
+        const path = readQueryVariable('path', window.location.pathname.replace(/[^/]*$/, '').substring(1) + 'websockify');
 
         // | | |         | | |
         // | | | Connect | | |
