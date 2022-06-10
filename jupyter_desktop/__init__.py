@@ -9,7 +9,7 @@ def setup_desktop():
         'port': 6901,
         'timeout': 30,
         'mappath': {
-            '/': '/index.html?path=desktop%2Fwebsockify&resize=remote&autoconnect=true',
+            '/': '/vnc.html?resize=remote&autoconnect=true'
         },
         'new_browser_window': True
     }
