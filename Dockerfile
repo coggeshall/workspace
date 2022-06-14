@@ -7,7 +7,7 @@ apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnup
 xvfb x11vnc novnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
-xorg manpages man-db pwgen netcat onboard vlc youtube-dl && \
+xorg manpages man-db pwgen netcat onboard vlc youtube-dl perl-tk libreoffice && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
