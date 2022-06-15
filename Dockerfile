@@ -11,6 +11,11 @@ xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree 
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
+curl -LO https://github.com/tenox7/ttyplot/releases/download/1.4/ttyplot_1.4-1.deb && \
+apt -y install ./ttyplot_1.4-1.deb && \
+rm -f ./ttyplot_1.4-1.deb
+
+RUN export DEBIAN_FRONTEND=noninteractive && \
 wget https://s3.amazonaws.com/turbovnc-pr/main/linux/`curl -q https://s3.amazonaws.com/turbovnc-pr/main/linux/index.html | awk -F'"' '/_amd64\.deb/ {print $2}'` -O turbovnc_latest_amd64.deb && \
 apt-get update && \
 apt-get install -y -q ./turbovnc_latest_amd64.deb && \
@@ -59,10 +64,6 @@ RUN curl -LO https://get.golang.org/Linux/go_installer && \
 chmod +x go_installer && \
 ./go_installer && \
 rm go_installer
-
-RUN curl -LO https://github.com/tenox7/ttyplot/releases/download/1.4/ttyplot_1.4-1.deb && \
-apt -y install ./ttyplot_1.4-1.deb && \
-rm -f ./ttyplot_1.4-1.deb
 
 COPY etc/bash.bashrc "/home/${NB_USER}/.bashrc"
 
