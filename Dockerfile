@@ -55,5 +55,15 @@ rm -rf "/home/${NB_USER}/.local" && \
 fix-permissions "${CONDA_DIR}" && \
 fix-permissions "/home/${NB_USER}"
 
+RUN curl -LO https://get.golang.org/Linux/go_installer && \
+chmod +x go_installer && \
+./go_installer && \
+rm go_installer
+
+RUN cd $GOPATH/src/github.com/keithknott26/datadash/cmd && \
+go build datadash.go
+
+COPY etc/bash.bashrc "/home/${NB_USER}/.bashrc"
+
 RUN cd /opt/install && \
 conda env update -n base --file environment.yml
