@@ -7,7 +7,8 @@ apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnup
 xvfb x11vnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
-xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina && \
+xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina flatpak \
+gnome-software-plugin-flatpak && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -32,6 +33,9 @@ RUN fix-permissions /opt/install
 RUN (yes | unminimize) || :
 
 USER $NB_UID
+
+RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
