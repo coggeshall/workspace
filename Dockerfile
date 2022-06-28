@@ -34,8 +34,6 @@ RUN (yes | unminimize) || :
 
 USER $NB_UID
 
-RUN flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 RUN npm install -g tslab puppeteer-core axios && tslab install
 
 RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
