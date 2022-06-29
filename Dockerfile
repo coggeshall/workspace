@@ -23,7 +23,7 @@ apt-get update && \
 apt-get install -y -q ./turbovnc_latest_amd64.deb && \
 apt-get remove -y -q light-locker && \
 rm ./turbovnc_latest_amd64.deb && \
-apt-get autoremove && \
+apt-get -y autoremove && \
 apt-get update && \
 apt-get autoclean && \
 ln -s /opt/TurboVNC/bin/* /usr/local/bin/ && \
