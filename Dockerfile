@@ -8,7 +8,8 @@ xvfb x11vnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
 xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina flatpak \
-gnome-software-plugin-flatpak && \
+gnome-software gnome-software-common gnome-software-plugin-flatpak texlive-full transmission-gtk \
+forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -22,6 +23,7 @@ apt-get update && \
 apt-get install -y -q ./turbovnc_latest_amd64.deb && \
 apt-get remove -y -q light-locker && \
 rm ./turbovnc_latest_amd64.deb && \
+apt-get autoremove && \
 apt-get update && \
 apt-get autoclean && \
 ln -s /opt/TurboVNC/bin/* /usr/local/bin/ && \
@@ -33,6 +35,8 @@ RUN fix-permissions /opt/install
 RUN (yes | unminimize) || :
 
 USER $NB_UID
+
+RUN flatpak --user remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
 
 RUN npm install -g tslab puppeteer-core axios && tslab install
 
