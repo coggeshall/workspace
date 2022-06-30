@@ -1,6 +1,9 @@
 FROM jupyter/all-spark-notebook:latest
 
 USER root
+
+RUN (yes | unminimize) || :
+
 RUN export DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
 apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnupg2 curl unzip rclone \
@@ -32,8 +35,6 @@ rm -rf /var/lib/apt/lists/*s
 
 ADD . /opt/install
 RUN fix-permissions /opt/install
-
-RUN (yes | unminimize) || :
 
 USER $NB_UID
 
