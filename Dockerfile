@@ -4,13 +4,13 @@ USER root
 RUN export DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
 apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnupg2 curl unzip rclone \
-xvfb x11vnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf \
+xvfb x11vnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf cowsay \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
-xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina flatpak \
-gnome-software gnome-software-common gnome-software-plugin-flatpak texlive-full transmission-gtk \
+xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina texlive-full \
+brutalchess bsdgames bsdgames-nonfree dreamchess stockfish openyahtzee transmission-gtk \
 forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-doc scilab-data \
-scilab-full-bin ruby-full rustc cargo && \
+scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
