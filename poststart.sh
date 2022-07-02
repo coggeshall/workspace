@@ -6,5 +6,6 @@ PASSWORD=$(cat /tmp/vncpw)
 
 cp -r /opt/install/www /tmp
 cp /opt/install/etc/bash.bashrc /home/jovyan/.bashrc
+ln -s .bashrc /home/jovyan/.bash_profile
 
 sed -i -e "s/RFBSECRET/$PASSWORD/g" /tmp/www/core/rfb.js

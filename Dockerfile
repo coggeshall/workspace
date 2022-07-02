@@ -37,6 +37,8 @@ rm -rf /var/lib/apt/lists/*s
 ADD . /opt/install
 RUN fix-permissions /opt/install
 
+RUN passwd -d jovyan
+
 USER $NB_UID
 
 RUN npm install -g tslab puppeteer-core axios && tslab install
