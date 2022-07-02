@@ -14,7 +14,7 @@ xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree 
 brutalchess bsdgames bsdgames-nonfree dreamchess stockfish openyahtzee transmission-gtk \
 forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-doc scilab-data \
 scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy calibre \
-obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless && \
+obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard nethack-x11 && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
