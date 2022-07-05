@@ -15,7 +15,7 @@ brutalchess bsdgames bsdgames-nonfree dreamchess stockfish openyahtzee transmiss
 forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-doc scilab-data \
 scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy calibre \
 obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard nethack-x11 \
-gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars gcompris gnome-hearts && \
+gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars gcompris && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
