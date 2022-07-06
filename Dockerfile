@@ -24,7 +24,8 @@ apt -y install ./ttyplot_1.4-1.deb && \
 rm -f ./ttyplot_1.4-1.deb
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
-wget https://s3.amazonaws.com/turbovnc-pr/main/linux/`curl -q https://s3.amazonaws.com/turbovnc-pr/main/linux/index.html | awk -F'"' '/_amd64\.deb/ {print $2}'` -O turbovnc_latest_amd64.deb && \
+wget https://s3.amazonaws.com/turbovnc-pr/main/linux/`curl -q https://s3.amazonaws.com/turbovnc-pr/main/linux/index.html |\
+awk -F'"' '/_amd64\.deb/ {print $2}'` -O turbovnc_latest_amd64.deb && \
 apt-get update && \
 apt-get install -y -q ./turbovnc_latest_amd64.deb && \
 apt-get remove -y -q light-locker && \
