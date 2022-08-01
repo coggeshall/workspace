@@ -16,7 +16,7 @@ forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-
 scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy calibre \
 obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard nethack-x11 \
 gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars gcompris ubuntu-gnome-desktop \
-inetutils-traceroute && \
+inetutils-traceroute torbrowser-launcher && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
