@@ -9,7 +9,8 @@ apt-get -y install software-properties-common
 RUN echo -e 'Package: firefox*\n\
 Pin: release o=Ubuntu*\n\
 Pin-Priority: -1\n' > /etc/apt/preferences.d/firefox-no-snap && \
-add-apt-repository ppa:mozillateam/ppa
+add-apt-repository ppa:mozillateam/ppa && \
+apt-add-repository ppa:i2p-maintainers/i2p
 
 RUN (yes | unminimize) || :
 
@@ -25,7 +26,7 @@ forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-
 scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy calibre \
 obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard nethack-x11 \
 gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars ubuntu-gnome-desktop \
-inetutils-traceroute torbrowser-launcher && \
+inetutils-traceroute torbrowser-launcher i2p && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -43,6 +44,7 @@ apt-get install -y -q ./turbovnc_latest_amd64.deb && \
 apt-get install -y -q ./virtualgl_latest_amd64.deb && \
 apt-get remove -y -q light-locker && \
 rm ./turbovnc_latest_amd64.deb && \
+rm ./virtualgl_latest_amd64.deb && \
 apt-get -y autoremove && \
 apt-get update && \
 apt-get autoclean && \
@@ -50,7 +52,8 @@ ln -s /opt/TurboVNC/bin/* /usr/local/bin/ && \
 rm -rf /var/lib/apt/lists/*s
 
 ADD . /opt/install
-RUN fix-permissions /opt/install
+RUN fix-permissions /opt/install && \
+fix-permissions "/home/${NB_USER}"
 
 RUN passwd -d jovyan
 
