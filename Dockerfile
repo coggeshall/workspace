@@ -2,6 +2,11 @@ FROM jupyter/all-spark-notebook:latest
 
 USER root
 
+RUN echo -e 'Package: firefox*\n\
+Pin: release o=Ubuntu*\n\
+Pin-Priority: -1\n' > /etc/apt/preferences.d/firefox-no-snap && \
+add-apt-repository ppa:mozillateam/ppa
+
 RUN (yes | unminimize) || :
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
