@@ -28,7 +28,7 @@ obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard netha
 gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars ubuntu-gnome-desktop \
 inetutils-traceroute torbrowser-launcher i2p flatpak build-essential dh-python python3-all \
 python3-stdeb python3-pyqt5 python3-gpg python3-requests python3-socks python3-packaging \
-gnupg2 tor libgpgme-dev && \
+gnupg2 tor libgpgme-dev fakeroot swig && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
@@ -79,7 +79,7 @@ RUN jupyter lab build
 RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract pytz xvfbwrapper \
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl jupyterlab-github \
 jlab-enhanced-cell-toolbar jupyterlab_autoscrollcelloutput pyviz_comms panel datashader hvplot \
-holoviews bokeh param colorcet pyttsx3
+holoviews bokeh param colorcet pyttsx3 distro gpg stem stdeb
 
 RUN tslab install
 
