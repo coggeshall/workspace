@@ -29,7 +29,7 @@ gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars ubuntu-gnome-desktop
 inetutils-traceroute torbrowser-launcher i2p flatpak build-essential dh-python python3-all \
 python3-stdeb python3-pyqt5 python3-gpg python3-requests python3-socks python3-packaging \
 gnupg2 tor libgpgme-dev fakeroot swig ack-grep gimp wireguard wireguard-tools automake \
-python3-dev && \
+python3-dev pdftk && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
