@@ -33,11 +33,6 @@ python3-dev pdftk && \
 apt-get clean
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
-curl -LO https://github.com/tenox7/ttyplot/releases/download/1.4/ttyplot_1.4-1.deb && \
-apt -y install ./ttyplot_1.4-1.deb && \
-rm -f ./ttyplot_1.4-1.deb
-
-RUN export DEBIAN_FRONTEND=noninteractive && \
 wget https://s3.amazonaws.com/turbovnc-pr/main/linux/`curl -q https://s3.amazonaws.com/turbovnc-pr/main/linux/index.html |\
 awk -F'"' '/_amd64\.deb/ {print $2}'` -O turbovnc_latest_amd64.deb && \
 wget https://s3.amazonaws.com/virtualgl-pr/main/linux/`curl -q https://s3.amazonaws.com/virtualgl-pr/main/linux/index.html |\
