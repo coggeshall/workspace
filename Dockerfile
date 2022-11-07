@@ -59,7 +59,7 @@ USER $NB_UID
 
 RUN npm install -g tslab puppeteer-core axios && tslab install
 
-RUN mamba install --quiet --yes -c conda-forge 'voila' 'tensorflow' 'beautifulsoup4' 'requests' \
+RUN mamba install --quiet --yes -c conda-forge 'voila' 'beautifulsoup4' 'requests' \
 'selenium' 'schedule' 'jupyterlab-git' 'jupytext' 'ipyparallel' 'bqplot' 'keras' \
 'ipywidgets' 'jupyter_bokeh' 'jupyterlab-lsp' 'python-lsp-server' 'lux-api' 'basemap' \
 'websockify' && \
