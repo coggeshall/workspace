@@ -6,6 +6,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
 apt-get -y install software-properties-common
 
+RUN ls -al /
+
 RUN echo -e 'Package: firefox*\n\
 Pin: release o=Ubuntu*\n\
 Pin-Priority: -1\n' > /etc/apt/preferences.d/firefox-no-snap && \
@@ -13,6 +15,8 @@ add-apt-repository ppa:mozillateam/ppa && \
 apt-add-repository ppa:i2p-maintainers/i2p
 
 RUN (yes | unminimize) || :
+
+RUN ls -al /
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
@@ -32,6 +36,8 @@ gnupg2 tor libgpgme-dev fakeroot swig ack-grep gimp wireguard wireguard-tools au
 python3-dev pdftk && \
 apt-get clean
 
+RUN ls -al /
+
 RUN export DEBIAN_FRONTEND=noninteractive && \
 wget https://s3.amazonaws.com/turbovnc-pr/main/linux/`curl -q https://s3.amazonaws.com/turbovnc-pr/main/linux/index.html |\
 awk -F'"' '/_amd64\.deb/ {print $2}'` -O turbovnc_latest_amd64.deb && \
@@ -49,11 +55,15 @@ apt-get autoclean && \
 ln -s /opt/TurboVNC/bin/* /usr/local/bin/ && \
 rm -rf /var/lib/apt/lists/*s
 
+RUN ls -al /
+
 ADD . /opt/install
 RUN fix-permissions /opt/install && \
 fix-permissions "/home/${NB_USER}"
 
 RUN passwd -d jovyan
+
+RUN ls -al /
 
 USER $NB_UID
 
@@ -92,3 +102,5 @@ rm go_installer
 
 RUN cd /opt/install && \
 conda env update -n base --file environment.yml
+
+RUN ls -al /
