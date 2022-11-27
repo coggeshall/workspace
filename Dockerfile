@@ -24,8 +24,14 @@ apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnup
 xvfb x11vnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf cowsay \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
-xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina texlive-full \
-brutalchess bsdgames bsdgames-nonfree dreamchess stockfish openyahtzee transmission-gtk \
+xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina texlive-full && \
+apt-get clean
+
+RUN ls -al /
+
+RUN export DEBIAN_FRONTEND=noninteractive && \
+apt-get update && \
+apt-get -y install brutalchess bsdgames bsdgames-nonfree dreamchess stockfish openyahtzee transmission-gtk \
 forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-doc scilab-data \
 scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy calibre \
 obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard nethack-x11 \
