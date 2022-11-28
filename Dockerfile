@@ -6,17 +6,12 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
 apt-get -y install software-properties-common
 
-RUN ls -al /
-
 RUN echo -e 'Package: firefox*\n\
 Pin: release o=Ubuntu*\n\
 Pin-Priority: -1\n' > /etc/apt/preferences.d/firefox-no-snap && \
-add-apt-repository ppa:mozillateam/ppa && \
-apt-add-repository ppa:i2p-maintainers/i2p
+add-apt-repository ppa:mozillateam/ppa
 
 RUN (yes | unminimize) || :
-
-RUN ls -al /
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
@@ -24,25 +19,17 @@ apt-get -y install dnsutils vim whois net-tools iputils-ping socat gcc make gnup
 xvfb x11vnc dbus dbus-x11 ffmpeg tcpdump uuid-runtime wget gtk2-engines-pixbuf cowsay \
 xfonts-cyrillic xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable imagemagick x11-apps \
 jq tshark netbase bc espeak libespeak1 telnet firefox xfce4 xfce4-panel xfce4-session xfce4-settings \
-xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina texlive-full && \
-apt-get clean
-
-RUN ls -al /
-
-RUN export DEBIAN_FRONTEND=noninteractive && \
-apt-get update && \
-apt-get -y install brutalchess bsdgames bsdgames-nonfree dreamchess stockfish openyahtzee transmission-gtk \
+xorg manpages man-db pwgen netcat xvkbd vlc youtube-dl perl-tk libreoffice tree remmina texlive-full \
+brutalchess bsdgames bsdgames-nonfree dreamchess stockfish openyahtzee transmission-gtk \
 forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-doc scilab-data \
 scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy calibre \
 obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard nethack-x11 \
 gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars ubuntu-gnome-desktop \
-inetutils-traceroute torbrowser-launcher i2p flatpak build-essential dh-python python3-all \
+inetutils-traceroute torbrowser-launcher flatpak build-essential dh-python python3-all \
 python3-stdeb python3-pyqt5 python3-gpg python3-requests python3-socks python3-packaging \
 gnupg2 tor libgpgme-dev fakeroot swig ack-grep gimp wireguard wireguard-tools automake \
 python3-dev pdftk && \
 apt-get clean
-
-RUN ls -al /
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
 wget https://s3.amazonaws.com/turbovnc-pr/main/linux/`curl -q https://s3.amazonaws.com/turbovnc-pr/main/linux/index.html |\
@@ -61,15 +48,11 @@ apt-get autoclean && \
 ln -s /opt/TurboVNC/bin/* /usr/local/bin/ && \
 rm -rf /var/lib/apt/lists/*s
 
-RUN ls -al /
-
 ADD . /opt/install
 RUN fix-permissions /opt/install && \
 fix-permissions "/home/${NB_USER}"
 
 RUN passwd -d jovyan
-
-RUN ls -al /
 
 USER $NB_UID
 
@@ -108,5 +91,3 @@ rm go_installer
 
 RUN cd /opt/install && \
 conda env update -n base --file environment.yml
-
-RUN ls -al /
