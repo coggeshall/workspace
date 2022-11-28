@@ -2,14 +2,18 @@ FROM jupyter/all-spark-notebook:latest
 
 USER root
 
-RUN DEBIAN_FRONTEND=noninteractive && \
-apt-get update && \
-apt-get -y install software-properties-common
-
 RUN echo -e 'Package: firefox*\n\
 Pin: release o=Ubuntu*\n\
 Pin-Priority: -1\n' > /etc/apt/preferences.d/firefox-no-snap && \
 add-apt-repository ppa:mozillateam/ppa
+
+RUN echo -e 'Package: snapd*\n\
+Pin: release a=*\n\
+Pin-Priority: -10\n' > /etc/apt/preferences.d/nosnap.pref
+
+RUN DEBIAN_FRONTEND=noninteractive && \
+apt-get update && \
+apt-get -y install software-properties-common
 
 RUN (yes | unminimize) || :
 
