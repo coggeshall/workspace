@@ -29,7 +29,7 @@ forensics-full gfio gnuradio gnuradio-dev gnuradio-doc qgis gummi scilab scilab-
 scilab-full-bin ruby-full rustc cargo aisleriot brainparty brainparty-data airspy calibre \
 obs-studio handbrake vmpk denemo ocrfeeder texstudio texworks bless xboard nethack-x11 \
 gnome-chess gnome-nibbles gnome-clocks gbrainy krita kstars ubuntu-gnome-desktop \
-inetutils-traceroute torbrowser-launcher flatpak build-essential dh-python python3-all \
+inetutils-traceroute torbrowser-launcher build-essential dh-python python3-all \
 python3-stdeb python3-pyqt5 python3-gpg python3-requests python3-socks python3-packaging \
 gnupg2 tor libgpgme-dev fakeroot swig ack-grep gimp wireguard wireguard-tools automake \
 python3-dev pdftk && \

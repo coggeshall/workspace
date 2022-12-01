@@ -15,8 +15,6 @@ cat << EOF > /home/jovyan/extra.sh
 
 pushd /home/jovyan
 
-flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
 popd
 
 EOF
