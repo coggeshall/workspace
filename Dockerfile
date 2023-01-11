@@ -79,7 +79,7 @@ RUN pip install nest_asyncio ipwhois py-radix websockets tldextract urlextract p
 jupyter-server-proxy jupyterlab_latex jupyter-tensorboard jtbl jupyterlab-github \
 jlab-enhanced-cell-toolbar jupyterlab_autoscrollcelloutput pyviz_comms panel datashader hvplot \
 holoviews bokeh param colorcet pyttsx3 distro gpg stem stdeb pyspark apachelogs PySparkIP \
-xmltodict
+xmltodict torch torchvision
 
 RUN tslab install
 
