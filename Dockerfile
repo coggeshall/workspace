@@ -2,6 +2,8 @@ FROM jupyter/all-spark-notebook:latest
 
 USER root
 
+RUN date > /etc/build-date
+
 RUN DEBIAN_FRONTEND=noninteractive && \
 apt-get update && \
 apt-get -y install software-properties-common
