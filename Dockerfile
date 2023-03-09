@@ -96,5 +96,5 @@ chmod +x go_installer && \
 ./go_installer && \
 rm go_installer
 
-RUN cd /opt/install && \
-conda env update -n base --file environment.yml
+#RUN cd /opt/install && \
+#conda env update -n base --file environment.yml
