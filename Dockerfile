@@ -99,3 +99,5 @@ rm go_installer
 RUN cd /opt/install && \
 pip install .
 #conda env update -n base --file environment.yml
+
+RUN jupyter lab build
