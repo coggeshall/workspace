@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xinit /etc/X11/Xsession startxfce4 -- /usr/local/bin/Xvnc :1 -depth 24 -desktop Desktop-GUI -geometry 1600x900 -pn -SecurityTypes none -rfbport 5901&
+websockify --web /var/www/workspace 6901 localhost:5901

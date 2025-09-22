@@ -1,0 +1,3 @@
+#!/bin/bash
+
+podman run -it -d --restart=always --net=host --name=workspace workspace:latest
